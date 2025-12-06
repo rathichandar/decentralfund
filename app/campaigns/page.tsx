@@ -100,48 +100,58 @@ function CampaignsContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          Explore Campaigns
+      <div className="mb-10 text-center">
+        <h1 className="text-5xl font-extrabold mb-4">
+          <span className="gradient-text">Explore Campaigns</span>
         </h1>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Discover and support innovative projects on the blockchain
         </p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="text-3xl font-bold text-blue-600 mb-2">
-            {isLoadingTotal ? '...' : totalCampaigns?.toString() || '0'}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 p-7 rounded-2xl border border-blue-200 overflow-hidden group hover:shadow-lg transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-300/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+          <div className="relative">
+            <div className="text-4xl font-black text-blue-600 mb-2">
+              {isLoadingTotal ? '...' : totalCampaigns?.toString() || '0'}
+            </div>
+            <div className="text-blue-700 font-semibold">Total Campaigns</div>
           </div>
-          <div className="text-gray-600">Total Campaigns</div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="text-3xl font-bold text-green-600 mb-2">
-            {campaigns.filter((c) => c.isActive).length}
+        <div className="relative bg-gradient-to-br from-green-50 to-green-100 p-7 rounded-2xl border border-green-200 overflow-hidden group hover:shadow-lg transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-green-300/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+          <div className="relative">
+            <div className="text-4xl font-black text-green-600 mb-2">
+              {campaigns.filter((c) => c.isActive).length}
+            </div>
+            <div className="text-green-700 font-semibold">Active Campaigns</div>
           </div>
-          <div className="text-gray-600">Active Campaigns</div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="text-3xl font-bold text-purple-600 mb-2">
-            {campaigns.reduce((acc, c) => acc + Number(c.contributorCount), 0)}
+        <div className="relative bg-gradient-to-br from-purple-50 to-purple-100 p-7 rounded-2xl border border-purple-200 overflow-hidden group hover:shadow-lg transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-300/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+          <div className="relative">
+            <div className="text-4xl font-black text-purple-600 mb-2">
+              {campaigns.reduce((acc, c) => acc + Number(c.contributorCount), 0)}
+            </div>
+            <div className="text-purple-700 font-semibold">Total Backers</div>
           </div>
-          <div className="text-gray-600">Total Backers</div>
         </div>
       </div>
 
       {/* Category Filter */}
-      <div className="mb-8">
+      <div className="mb-10">
+        <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Filter by Category</h3>
         <div className="flex flex-wrap gap-3">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 hover:scale-105 ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-purple-300'
               }`}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -201,7 +211,7 @@ function CampaignsContent() {
 
 export default function CampaignsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Navbar />
       <CampaignsContent />
     </div>
