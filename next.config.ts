@@ -7,6 +7,22 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false,
+      '@react-native-async-storage/async-storage': false,
+      'react-native': false,
+      'react-native-crypto': false,
+      'react-native-randombytes': false,
+    };
+    
+    config.externals.push('pino-pretty', 'lokijs', 'encoding');
+    
+    return config;
+  },
 };
 
 export default nextConfig;
